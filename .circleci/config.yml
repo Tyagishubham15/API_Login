@@ -1,129 +1,16 @@
-# PHP CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-php/ for more details
-#
-version: 2
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  test:
+  build:
     docker:
-      # Specify the version you desire here
-      - image: circleci/php:8.1.5
-  
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # Using the RAM variation mitigates I/O contention
-      # for database intensive operations.
-      # - image: circleci/mysql:5.7-ram
-      # - image: redis:3
-      - image: circleci/mysql:8.0.20-ram
-<<<<<<< HEAD
-        command: 
-        environment:
-          MYSQL_USER: 
-          MYSQL_DATABASE: 
-          MYSQL_ROOT_PASSWORD: 
-          MYSQL_PASSWORD: 
-=======
-        command: mysqld --default-authentication-plugin=mysql_native_password
-        environment:
-          MYSQL_USER: forge
-          MYSQL_DATABASE: forge
-          MYSQL_ROOT_PASSWORD: ''
-          MYSQL_PASSWORD: 'forge'
->>>>>>> 311c0e04351a2ca0716ecfc0c6edcfb571cdfcb1
+      - image: circleci/laravel
+   
+   working_directory: ~/repo
 
-    steps:
-      - checkout
-      - run:
-          name: Install MySQL driver
-          command: |
-            sudo docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd
-            sudo docker-php-ext-install zip bcmath pdo_mysql
-      - run:
-<<<<<<< HEAD
-          name: 
-          command: |
-           
-=======
-          name: Install Node
-          command: |
-            curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-            sudo apt-get install -y nodejs
->>>>>>> 311c0e04351a2ca0716ecfc0c6edcfb571cdfcb1
-      # Download and cache dependencies
-
-      # composer cache
-      - restore_cache:
-          keys:
-          # "composer.json" can be used if "composer.json"
-          # is not committed to the repository.
-<<<<<<< HEAD
-         
-          # fallback to using the latest cache if no exact match is found
-          
-      - run:
-      - save_cache:
-          key: 
-=======
-          - composer-v1-{{ checksum "composer.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - composer-v1-
-      - run: composer install -n --prefer-dist
-      - save_cache:
-          key: composer-v1-{{ checksum "composer.lock" }}
->>>>>>> 311c0e04351a2ca0716ecfc0c6edcfb571cdfcb1
-          paths:
-            - vendor
-
-      # node cache
-      - restore_cache:
-          keys:
-<<<<<<< HEAD
-            - 
-            - 
-      - run: 
-      - save_cache:
-          key: 
-          paths:
-            - 
-            - 
-
-      # prepare the database
-      - run: 
-      - run: php artisan migrate --env=testing --database=mysql --
-=======
-            - node-v4-{{ checksum "package.json" }}
-            - node-v4-
-      - run: npm install
-      - save_cache:
-          key: node-v4-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-            - ~/.yarn
-
-      # prepare the database
-      - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=mysql --force
->>>>>>> 311c0e04351a2ca0716ecfc0c6edcfb571cdfcb1
-
-      # run tests with phpunit or codecept
-      #- run: ./vendor/bin/phpunit
-      # this example uses codecept but you're not limited to it
-<<<<<<< HEAD
-      - run: 
-      - run: 
-=======
-      - run: ./vendor/bin/codecept build
-      - run: ./vendor/bin/codecept run --xml result.xml
->>>>>>> 311c0e04351a2ca0716ecfc0c6edcfb571cdfcb1
-      - store_test_results:
-          path: tests/_output
-      - store_artifacts:
-          path: tests/_output
-
-workflows:
-  version: 2
-  workflow:
-    jobs:
-    - test
+   steps:
+   - run:
+   - run:
